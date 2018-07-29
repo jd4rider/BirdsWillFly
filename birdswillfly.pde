@@ -28,9 +28,8 @@ void setup(){
   
     if ( db.connect() )
     {
-        // Check to see if score table exists
-        db.query( "SELECT name as \"Name\" FROM SQLITE_MASTER where type=\"table\"" );
-        if(!db.next()) db.query( "CREATE TABLE score(ID INT PRIMARY KEY, NAME TEXT, SCORE INT)" );
+        // Create score table if it doesn't exist
+        db.query( "CREATE TABLE IF NOT EXISTS score(ID INT PRIMARY KEY, NAME TEXT, SCORE INT)" );
         
         getScore();
 
@@ -97,6 +96,7 @@ void mousePressed(){
   } 
 }
 void keyPressed(){
+  if(gamestate == 0 && key == ' ') vy = -13.0;
   if(gamestate == 2){ 
     if((key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z')) name += key;
     if(key == BACKSPACE || key == DELETE) name = name.substring( 0, name.length()-1 );
