@@ -86,7 +86,6 @@ void draw(){
 }
 void mousePressed(){
   vy = -13.0;
-  if(gamestate == 0); 
   if(gamestate == 1){
     wx[0] = 600;
     wy[0] = height/2;
