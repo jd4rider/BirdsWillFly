@@ -102,7 +102,7 @@ void keyPressed(){
     if(key == BACKSPACE || key == DELETE) name = name.substring( 0, name.length()-1 );
     if(key == ENTER || key == RETURN){
         if(name.length() > 0){
-          db.query( "insert into score (NAME, SCORE) values (\""+name+"\","+score+")" );
+          db.query( "insert into score (NAME, SCORE) values ('%1$s', %2$d)", name, score );
           dbQueryFlag = true;
           gamestate = 1;
         }
